@@ -123,18 +123,26 @@ Contact
 
     For any questions or issues, feel free to reach out to nandhuvigneshpb13@gmail.com.
 
-Explanation of Sections
+// frontend/src/components/VehicleMap.js
 
-1. **Overview**: A brief summary of the project, its purpose, and its main features.
-2. **Features**: Key features of the application that provide a quick insight into what the project can do.
-3. **Technologies Used**: A list of technologies and tools utilized in the project.
-4. **Getting Started**: Instructions for installing and setting up the project, including project structure and environment variables.
-5. **Usage**: Simple instructions for how to use the application after setup.
-6. **API Endpoints**: A list of API endpoints used in the application, useful for both developers and testers.
-7. **Testing**: Instructions for running tests in the application.
-8. **Contributing**: Guidelines for how others can contribute to the project.
-9. **License**: Information about the type of license governing the project.
-10. **Acknowledgments**: Credits and resources you found helpful while building the project.
-11. **Contact**: Your contact information for inquiries or further discussion.
+import React from 'react';
+import { GoogleMap, Marker } from '@react-google-maps/api';
+
+const VehicleMap = ({ vehicles }) => {
+    return (
+        <GoogleMap
+            zoom={10}
+            center={{ lat: vehicles[0]?.location.coordinates[1] || 0, lng: vehicles[0]?.location.coordinates[0] || 0 }}
+            mapContainerStyle={{ height: "400px", width: "800px" }}
+        >
+            {vehicles.map(vehicle => (
+                <Marker key={vehicle._id} position={{ lat: vehicle.location.coordinates[1], lng: vehicle.location.coordinates[0] }} />
+            ))}
+        </GoogleMap>
+    );
+};
+
+export default VehicleMap;
+
 
  
